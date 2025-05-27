@@ -524,8 +524,8 @@ export const summary = {
     users: [
       {
         _id: "65c5f27fb5204a81bde86833",
-        name: "New User",
-        title: "Designer",
+        name: "Hazeq New",
+        title: "Junior Developer",
         role: "Developer",
         isActive: true,
         createdAt: "2025-04-15T09:38:07.765Z",

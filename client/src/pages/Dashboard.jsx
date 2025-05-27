@@ -202,6 +202,7 @@ const Dashboard = () => {
           ))
         }
       </div>
+      {/* chart */}
       <div className='w-full bg-gray-100 mt-16 p-4 rounded shadow-md'>
         <h1 className='text-2xl font-semibold text-black text-center'>Chart by Priority</h1>
         <Chart />

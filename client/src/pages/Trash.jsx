@@ -5,6 +5,7 @@ import Button from '../components/Button';
 import { tasks } from '../assets/data';
 import Title from '../components/Title';
 import { priorityStyles, taskType } from '../utils';
+import ConfirmationDialog from '../components/ConfirmationDialog';
 
 const Icons = {
     high: <MdKeyboardDoubleArrowUp />,
@@ -19,6 +20,31 @@ const Trash = () => {
   const [msg, setMsg] = useState(null);
   const[type, setType] = useState('delete');
   const[selected, setSelected] = useState('');
+
+  const deleteAllClick = () => {
+    setType('deleteAll');
+    setMsg('Do you want to permanently delete all the tasks?');
+    setOpenDialog(true);
+  };
+
+  const restoreAllClick = () => {
+    setType('restoreAll');
+    setMsg('Do you want to restore all the tasks in the trash?')
+    setOpenDialog(true);
+  };
+
+  const deleteClick = (id) => {
+    setType('delete');
+    setSelected(id);
+    setOpenDialog(true)
+  }
+
+  const restoreClick = (id) => {
+    setType('restore');
+    setSelected(id);
+    setMsg('Do you want to restore the selected task?');
+    setOpenDialog(true);
+  }
 
   const TableHeader = () => (
     <thead className='border-b border-gray-300'>
@@ -61,11 +87,11 @@ const Trash = () => {
       <td className='py-2 flex gap-1 justify-end'>
         <Button
           icon={<MdOutlineRestore className='text-xl text-gray-700 hover:text-gray-400' />}
-          // onClick={() => restoreClick(item._id)}
+          onClick={() => restoreClick(item._id)}
         />
         <Button
           icon={<MdDelete className='text-xl text-red-500 hover:text-red-300' />}
-          // onClick={() => deleteClick(item._id)}
+          onClick={() => deleteClick(item._id)}
         />
       </td>
     </tr>
@@ -82,13 +108,13 @@ const Trash = () => {
               label='Restore All'
               icon={<MdOutlineRestore className='text-lg hidden md:flex' />}
               className='flex flex-row-reverse gap-1 items-center  text-white text-sm md:text-base rounded-md 2xl:py-2.5 bg-green-500 hover:bg-green-400 transition-all duration-300 ease-in-out'
-              // onClick={() => restoreAllClick()}
+              onClick={() => restoreAllClick()}
             />
             <Button
               label='Delete All'
               icon={<MdDelete className='text-lg hidden md:flex' />}
               className='flex flex-row-reverse gap-1 items-center  text-white text-sm md:text-base rounded-md 2xl:py-2.5 bg-red-500 hover:bg-red-400 transition-all duration-300 ease-in-out'
-              // onClick={() => deleteAllClick()}
+              onClick={() => deleteAllClick()}
             />
           </div>
         </div>
@@ -108,7 +134,7 @@ const Trash = () => {
 
       {/* <AddUser open={open} setOpen={setOpen} /> */}
 
-      {/* <ConfirmatioDialog
+      <ConfirmationDialog
         open={openDialog}
         setOpen={setOpenDialog}
         msg={msg}
@@ -116,7 +142,7 @@ const Trash = () => {
         type={type}
         setType={setType}
         onClick={() => deleteRestoreHandler()}
-      /> */}
+      />
     </>
   );
 }

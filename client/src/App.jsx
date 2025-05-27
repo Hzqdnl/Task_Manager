@@ -5,7 +5,7 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import './App.css';
 import Dashboard from './pages/dashboard';
 import Login from './pages/login';
-import Task from './pages/task';
+import Task from './pages/Task';
 import TaskDetails from './pages/taskdetails';
 import Trash from './pages/trash';
 import Users from './pages/users';

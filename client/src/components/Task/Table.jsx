@@ -10,6 +10,7 @@ import { bgs, formatDate, priorityStyles, taskType } from '../../utils';
 import { FaList } from 'react-icons/fa';
 import UserInfo from '../UserInfo';
 import Button from '../Button';
+import ConfirmationDialog from '../ConfirmationDialog';
 
 
 const Icons = {
@@ -21,7 +22,13 @@ const Icons = {
 export const Table = ({tasks}) => {
     const [openDialog, setOpenDialog] = useState(false);
     const [selected, setSelected] = useState(null);
-    const deleteClick = () => {};
+    
+    const deleteClick = (id) => {
+      setSelected(id);
+      setOpenDialog(true);
+    };
+
+    const deleteHandler = () => {};
 
     const TableHeader = () => (
         <thead className='w-full border-b border-gray-300'>
@@ -124,11 +131,11 @@ export const Table = ({tasks}) => {
       </div>
 
       {/* todo */}
-      {/* <ConfirmDialog
+      <ConfirmationDialog
       open = {openDialog}
       setOpen = {setOpenDialog}
       onClick = {deleteHandler}
-      /> */}
+      />
     </>
   )
 }

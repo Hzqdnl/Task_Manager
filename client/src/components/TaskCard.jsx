@@ -8,6 +8,7 @@ import { bgs, formatDate, priorityStyles, taskType } from '../utils';
 import clsx from 'clsx';
 import TaskDialog from './Task/TaskDialog';
 import UserInfo from './UserInfo';
+import AddSubTask from './Task/AddSubTask';
 
 
 const Icons = {
@@ -77,7 +78,7 @@ const TaskCard = ({task}) => {
           <span className='text-sm text-gray-600'>
             {formatDate(new Date(task?.subTasks[0]?.date))}
             </span>
-            <span className='bg-blue-600/20 px-3 py-1 rounded-full text-blue-400 font-medium'>
+            <span className='bg-blue-300/20 px-3 py-1 text-sm rounded-full text-blue-600 font-medium'>
               {task?.subTasks[0].tag}
             </span>
         </div>
@@ -90,8 +91,9 @@ const TaskCard = ({task}) => {
       )}
       <div className='w-full pb-2'>
       <button
+      onClick={() => setOpen(true)}
       disabled={user.role === 'admin' ? false : true}
-      className='w-full flex gap-4 items-center text-sm text-gray-500 font-semibold disabled:cursor-not-allowed
+      className='w-full flex gap-4 cursor-pointer items-center text-sm text-gray-500 font-semibold disabled:cursor-not-allowed
       disabled::text-gray-300'
       >
       <IoMdAdd className='text-lg'/>
@@ -99,7 +101,7 @@ const TaskCard = ({task}) => {
       </button>
       </div>
     </div>
-    {/* <AddSubTask open={open} setOpen={setOpen} id={task._id}/> */}
+    <AddSubTask open={open} setOpen={setOpen} id={task._id}/>
     </>
   );
 };
